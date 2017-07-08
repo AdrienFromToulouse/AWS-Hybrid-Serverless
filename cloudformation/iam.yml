@@ -1,0 +1,19 @@
+- Effect: Allow
+  Action:
+    - sqs:SendMessage
+    - sqs:GetQueueUrl
+    - sqs:ReceiveMessage
+    - sqs:DeleteMessage
+  Resource:
+  - Fn::GetAtt:
+    - ServerlessQueue
+    - Arn
+  - Fn::GetAtt:
+    - ServerlessDeadLetterQueue
+    - Arn
+
+- Effect: Allow
+  Action:
+    - ecs:DiscoverPollEndpoint
+    - ecs:RunTask
+  Resource: 'arn:aws:ecs:*:*:*'

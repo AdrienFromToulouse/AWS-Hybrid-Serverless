@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`service handler() fail returns error on SQS getQueueUrl returns result 1`] = `undefined`;
+
+exports[`service handler() success returns the ECS task response returns result 1`] = `
+Object {
+  "failures": Array [
+    Object {
+      "arn": "string",
+      "reason": "string",
+    },
+  ],
+  "tasks": Array [
+    Object {
+      "clusterArn": "string",
+      "containerInstanceArn": "string",
+      "containers": Array [
+        Object {
+          "containerArn": "string",
+          "exitCode": 200,
+          "lastStatus": "string",
+          "name": "string",
+          "reason": "string",
+          "taskArn": "string",
+        },
+      ],
+      "createdAt": 200,
+      "desiredStatus": "string",
+      "group": "string",
+      "lastStatus": "string",
+      "overrides": Object {
+        "containerOverrides": Array [
+          Object {
+            "command": Array [
+              "string",
+            ],
+            "environment": Array [
+              Object {
+                "name": "string",
+                "value": "string",
+              },
+            ],
+            "name": "string",
+          },
+        ],
+        "taskRoleArn": "string",
+      },
+      "startedAt": 200,
+      "startedBy": "string",
+      "stoppedAt": 200,
+      "stoppedReason": "string",
+      "taskArn": "string",
+      "taskDefinitionArn": "string",
+      "version": 2,
+    },
+  ],
+}
+`;

@@ -1,0 +1,37 @@
+# Runtime data
+*.csv
+*.log
+*.pid
+*.seed
+**/cpp/build
+/build
+logs
+tmp
+dist
+pids
+
+# Yarn
+.cache
+
+#IDE
+**/.idea
+
+# OS
+.DS_Store
+.tmp
+
+# Dependency directory
+/node_modules
+
+# Serverless V1.0
+.serverless
+
+# Reports
+.nyc_output
+coverage
+results
+jest
+
+# IDEs
+.idea
+atlassian-ide-plugin.xml

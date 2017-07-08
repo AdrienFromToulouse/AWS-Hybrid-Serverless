@@ -1,0 +1,45 @@
+service: serverless
+
+frameworkVersion: ">=1.0.0 <2.0.0"
+
+custom:
+  config: ${file(config/${opt:stage}.js):config, file(config/common.js):config}
+
+provider:
+  cfLogs: true
+  # deploymentBucket: serverless-sg-sls-deploys-${self:provider.region}
+  environment:
+    ENVIRONMENT: ${opt:stage}
+    REGION: ${self:provider.region}
+    SERVICE_NAME: ${self:service}
+    VERSION: ${file(package.json):version}
+    SERVERLESS_QUEUE_NAME: ${self:service}-${opt:stage}-ServerlessQueue
+    ECS_CLUSTER: ${self:service}-${opt:stage}-serverless
+    TASK_DEFINITION: ${self:service}-${opt:stage}-serverless-worker
+
+  iamRoleStatements: ${file(cloudformation/iam.yml)}
+  name: aws
+  profile: ${opt:profile, self:custom.config.awsProfile}
+  region: ${opt:region}
+  runtime: nodejs6.10
+  versionFunctions: false
+
+package:
+  individually: true
+  exclude:
+    - binaries/**
+    - cloudformation/**
+    - config/**
+    - functions/**
+    - yarn.lock
+
+functions:
+  service:
+    handler: functions/service.handler
+    timeout: 10
+    memorySize: 1024
+    package:
+      include:
+        - functions/service.js
+
+resources: ${file(cloudformation/template.yml)}
